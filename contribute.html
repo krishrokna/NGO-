@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contribute to the Association</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+        }
+
+        nav {
+            background-color: grey;
+            padding: 1rem;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            font-size: 18px;
+            padding: 10px;
+        }
+
+        .contribute-section {
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .form-box {
+            background-color: grey;
+            padding: 30px;
+            border-radius: 8px;
+            width: 400px;
+            margin: 0 auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+        }
+
+        .form-box input, .form-box select, .form-box button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            background-color: black;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .form-box input[type="number"], .form-box input[type="text"], .form-box input[type="email"] {
+            text-align: left;
+        }
+
+        .form-box button {
+            background-color: blue;
+            cursor: pointer;
+        }
+
+        .form-box button:hover {
+            background-color: blue;
+        }
+
+        .qr-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .qr-section img {
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#ngos">Our NGOs</a></li>
+            <li><a href="contribute.html">Contribute</a></li>
+        </ul>
+    </nav>
+
+    <section class="contribute-section">
+        <h2>Make a Contribution</h2>
+        <div class="form-box">
+            <form id="donationForm">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="amount">Donation Amount (₹):</label>
+                <input type="number" id="amount" name="amount" min="10" required>
+
+                <label for="paymentMethod">Payment Method:</label>
+                <select id="paymentMethod" name="paymentMethod">
+                    <option value="creditCard">Credit/Debit Card</option>
+                    <option value="upi">UPI</option>
+                </select>
+
+          
+                <div id="cardPayment" class="payment-method">
+                    <label for="cardNumber">Card Number:</label>
+                    <input type="text" id="cardNumber" name="cardNumber" required>
+
+                    <label for="expiry">Expiry Date:</label>
+                    <input type="text" id="expiry" name="expiry" placeholder="MM/YY" required>
+
+                    <label for="cvv">CVV:</label>
+                    <input type="text" id="cvv" name="cvv" required>
+                </div>
+
+               
+                <div id="upiPayment" class="payment-method" style="display:none;">
+                    <label for="upi">UPI ID:</label>
+                    <input type="text" id="upi" name="upi" required>
+                    <div class="qr-section">
+                        <h3>Scan UPI QR Code to Pay</h3>
+                        <img src="upi.jpg" alt="UPI QR Code">
+                    </div>
+                </div>
+
+                <button type="submit">Donate Now</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+      
+        document.getElementById('paymentMethod').addEventListener('change', function() {
+            var paymentMethod = this.value;
+            if (paymentMethod === 'creditCard') {
+                document.getElementById('cardPayment').style.display = 'block';
+                document.getElementById('upiPayment').style.display = 'none';
+            } else if (paymentMethod === 'upi') {
+                document.getElementById('cardPayment').style.display = 'none';
+                document.getElementById('upiPayment').style.display = 'block';
+            }
+        });
+
+       
+        document.getElementById('donationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Thank you for your donation!');
+        });
+    </script>
+</body>
+</html>
